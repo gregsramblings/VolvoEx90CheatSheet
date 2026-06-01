@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volvo EX90 Cheat Sheet</title>
+<!--
+  ============================================================
+  VOLVO EX90 CHEAT SHEET
+  ============================================================
+  HOW TO REVISE THIS FILE:
+   - Each procedure is an <article class="card ..."> block. Copy one to add a procedure.
+   - The cards live inside three <div class="pcol"> columns. On screen they reflow
+     responsively; for PRINT they become three fixed columns sized to fit ONE
+     landscape page. If you add or lengthen a card, move cards between the three
+     <div class="pcol"> blocks so the columns stay roughly equal height, then print-
+     preview (Ctrl/Cmd-P, Landscape) to confirm it still fits one page.
+   - The accent color comes from the card's color class (card--blue, card--green, etc.).
+     Add or change colors in the :root variables and the .card--<name> rules below.
+   - Badges: badge--safe = settings retained, badge--danger = erases data,
+             badge--time = how long it takes, badge--limit = version/limit note.
+   - Callouts: callout--tip / callout--note / callout--warn.
+   - Update the VERSION / DATE / URL in the <header> below for each revision.
+   - Screen view is a dark theme; the @media print block at the end of the CSS
+     switches to a light, ink-friendly, single-page layout for printing.
+  ============================================================
+-->
+<style>
+  :root{
+    --bg:#0f1420;
+    --bg-soft:#161d2c;
+    --card:#1b2335;
+    --card-2:#202a40;
+    --ink:#e8edf6;
+    --ink-soft:#aab4c5;
+    --ink-faint:#7a8699;
+    --line:#2c3650;
+
+    --blue:#3b82f6;
+    --green:#22c55e;
+    --amber:#f59e0b;
+    --violet:#8b5cf6;
+    --pink:#ec4899;
+    --cyan:#06b6d4;
+    --red:#ef4444;
+
+    --radius:18px;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --font:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font);
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(59,130,246,.18), transparent 60%),
+      radial-gradient(1000px 600px at 110% 0%, rgba(139,92,246,.16), transparent 55%),
+      var(--bg);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HEADER ---------- */
+  header.masthead{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 24px 8px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-soft);
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--line);
+    padding:6px 14px;border-radius:999px;
+  }
+  h1.title{
+    margin:.45em 0 .15em;
+    font-size:clamp(1.9rem,4.5vw,3rem);
+    font-weight:800;
+    letter-spacing:-.02em;
+    line-height:1.05;
+    background:linear-gradient(90deg,#fff 0%,#bcd0ff 45%,#c9b8ff 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .meta{
+    display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;
+    color:var(--ink-soft);font-size:.95rem;margin-top:10px;
+  }
+  .meta strong{color:#fff;}
+  .meta a{color:#7fb0ff;text-decoration:none;}
+  .meta a:hover{text-decoration:underline;}
+  .meta .dot{width:5px;height:5px;border-radius:50%;background:var(--ink-faint);display:inline-block;}
+
+  /* legend */
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 4px;}
+
+  /* ---------- GRID ---------- */
+  main{
+    max-width:1200px;margin:0 auto;padding:20px 24px 60px;
+    display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start;
+  }
+  /* each column holds a balanced set of cards (also used for print) */
+  .pcol{flex:1 1 320px;min-width:min(320px,100%);display:flex;flex-direction:column;gap:22px;}
+
+  /* ---------- CARD ---------- */
+  .card{
+    position:relative;
+    background:linear-gradient(180deg,var(--card-2),var(--card));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:transform .15s ease,border-color .15s ease;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--accent);}
+  .card::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:5px;
+    background:linear-gradient(90deg,var(--accent),transparent 85%);
+  }
+  .card-head{
+    display:flex;align-items:flex-start;gap:14px;
+    padding:22px 22px 6px;
+  }
+  .card-ico{
+    flex:none;width:46px;height:46px;border-radius:13px;
+    display:grid;place-items:center;font-size:1.4rem;
+    background:color-mix(in srgb,var(--accent) 22%,transparent);
+    border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+  }
+  .card-head h2{
+    margin:2px 0 0;font-size:1.18rem;font-weight:700;letter-spacing:-.01em;
+  }
+  .card-num{
+    position:absolute;top:16px;right:18px;
+    font-size:2.6rem;font-weight:800;line-height:1;
+    color:color-mix(in srgb,var(--accent) 30%,transparent);
+  }
+  .badges{display:flex;flex-wrap:wrap;gap:7px;padding:12px 22px 4px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:.74rem;font-weight:600;letter-spacing:.02em;
+    padding:5px 10px;border-radius:999px;border:1px solid transparent;
+  }
+  .badge--safe{color:#9ff0bf;background:rgba(34,197,94,.13);border-color:rgba(34,197,94,.35);}
+  .badge--danger{color:#ffb3b3;background:rgba(239,68,68,.14);border-color:rgba(239,68,68,.4);}
+  .badge--time{color:#cdd6e6;background:rgba(255,255,255,.05);border-color:var(--line);}
+  .badge--limit{color:#ffd9a8;background:rgba(245,158,11,.13);border-color:rgba(245,158,11,.35);}
+
+  .card-body{padding:6px 22px 22px;}
+  .lede{color:var(--ink-soft);font-size:.93rem;margin:8px 0 16px;}
+
+  /* steps */
+  ol.steps{margin:0;padding:0;counter-reset:step;list-style:none;}
+  ol.steps>li{
+    position:relative;padding:0 0 14px 40px;margin:0;
+    font-size:.93rem;color:var(--ink);
+  }
+  ol.steps>li::before{
+    counter-increment:step;content:counter(step);
+    position:absolute;left:0;top:-1px;
+    width:26px;height:26px;border-radius:8px;
+    display:grid;place-items:center;font-size:.8rem;font-weight:700;
+    color:#fff;background:var(--accent);
+    box-shadow:0 2px 8px color-mix(in srgb,var(--accent) 50%,transparent);
+  }
+  ol.steps>li:not(:last-child)::after{
+    content:"";position:absolute;left:12px;top:28px;bottom:6px;width:2px;
+    background:linear-gradient(var(--line),transparent);
+  }
+  /* nested key combos */
+  ul.sub{margin:9px 0 2px;padding:0;list-style:none;display:grid;gap:7px;}
+  ul.sub li{
+    display:flex;align-items:center;gap:9px;
+    background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:9px;padding:7px 11px;font-size:.86rem;
+  }
+  .kbd{
+    flex:none;font-weight:700;font-size:.8rem;
+    padding:3px 9px;border-radius:7px;color:#fff;
+    background:color-mix(in srgb,var(--accent) 65%,#000 10%);
+    border:1px solid color-mix(in srgb,var(--accent) 80%,#fff 5%);
+    box-shadow:inset 0 -2px 0 rgba(0,0,0,.25);
+  }
+  /* breadcrumb-style settings path */
+  .path{
+    display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px;
+    background:rgba(255,255,255,.05);border:1px solid var(--line);
+    border-radius:7px;padding:2px 8px;margin:1px 0;
+    font-size:.82rem;font-weight:600;color:#dfe6f2;
+  }
+  .path .sep{color:var(--accent);font-weight:800;}
+  strong.hot{color:#fff;}
+  em.warnword{color:#ffd9a8;font-style:normal;font-weight:700;}
+
+  /* callouts */
+  .callout{
+    display:flex;gap:11px;margin-top:16px;padding:13px 15px;border-radius:12px;
+    font-size:.88rem;line-height:1.45;border:1px solid;
+  }
+  .callout .c-ico{flex:none;font-size:1.05rem;line-height:1.3;}
+  .callout--tip{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.32);color:#c9f5da;}
+  .callout--note{background:rgba(59,130,246,.10);border-color:rgba(59,130,246,.32);color:#cfe1ff;}
+  .callout--warn{background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.34);color:#ffe6c2;}
+  .callout b{color:#fff;}
+
+  /* accent assignment */
+  .card--blue{--accent:var(--blue);}
+  .card--green{--accent:var(--green);}
+  .card--amber{--accent:var(--amber);}
+  .card--violet{--accent:var(--violet);}
+  .card--cyan{--accent:var(--cyan);}
+  .card--pink{--accent:var(--pink);}
+  .card--red{--accent:var(--red);}
+
+  /* span a destructive / wide card across full width on big screens */
+  .card.span2{grid-column:1/-1;}
+  @media(min-width:760px){
+    .card.span2 .card-body{columns:2;column-gap:34px;}
+    .card.span2 .card-body>*{break-inside:avoid;}
+  }
+
+  /* ---------- DISCLAIMER ---------- */
+  footer{
+    max-width:1200px;margin:0 auto;padding:0 24px 60px;
+  }
+  .disclaimer{
+    background:rgba(239,68,68,.06);
+    border:1px solid rgba(239,68,68,.25);
+    border-radius:14px;padding:16px 20px;
+    color:var(--ink-soft);font-size:.85rem;
+  }
+  .disclaimer b{color:#ffb3b3;}
+  .sig{margin-top:14px;color:var(--ink-faint);font-size:.8rem;text-align:center;}
+
+  /* =====================================================================
+     PRINT — optimized to fit ONE landscape Letter page, ink-friendly.
+     Light background, compact 2-column flow, colored accents retained.
+     To tweak density for print, adjust --p-font and the gaps below.
+     ===================================================================== */
+  @media print{
+    @page{ size:Letter landscape; margin:0.28in; }
+    :root{ --p-font:7.7pt; }
+
+    html,body{
+      background:#fff !important; color:#10151f !important;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      font-size:var(--p-font); line-height:1.2;
+    }
+    body{ background-image:none !important; }
+
+    /* ---- header becomes a slim one-line banner ---- */
+    header.masthead{ max-width:none; padding:0 0 3pt; }
+    .eyebrow{ display:none; }
+    .legend{ display:none; }            /* redundant: every badge is self-labeled */
+    h1.title{
+      font-size:14pt; margin:0; color:#0b2a5b !important;
+      -webkit-text-fill-color:#0b2a5b; background:none;
+      display:inline-block; line-height:1.1;
+    }
+    .masthead .meta{
+      float:right; margin:3pt 0 0; gap:3pt 11pt; font-size:7.4pt; color:#444;
+    }
+    .masthead .meta strong{ color:#0b2a5b; }
+    .masthead .meta a{ color:#1452b8; }
+    .masthead .meta .dot{ background:#aaa; }
+
+    /* ---- three explicit balanced columns: reliable single page ---- */
+    main{
+      display:flex; align-items:flex-start; gap:11pt;
+      max-width:none; padding:4pt 0 0; margin:0;
+    }
+    .pcol{ flex:1 1 0; min-width:0; gap:6pt; }
+
+    /* ---- compact, light cards ---- */
+    .card{
+      break-inside:avoid;
+      width:100%;
+      background:#fff !important; box-shadow:none !important;
+      border:1px solid #c9d2e0; border-radius:8pt;
+      margin:0; transform:none !important; overflow:visible;
+    }
+    .card::before{ height:3pt; border-radius:8pt 8pt 0 0; background:var(--accent) !important; }
+    .card-num{ display:none; }
+    .card-head{ padding:5pt 8pt 0; gap:7pt; align-items:center; }
+    .card-ico{
+      width:20pt; height:20pt; border-radius:6pt; font-size:11pt;
+      background:color-mix(in srgb,var(--accent) 16%,#fff) !important;
+      border-color:color-mix(in srgb,var(--accent) 40%,#fff);
+    }
+    .card-head h2{ font-size:9pt; color:#0d1726; line-height:1.1; }
+
+    .badges{ padding:3pt 8pt 0; gap:3.5pt; }
+    .badge{ font-size:6.3pt; padding:1.5pt 5pt; border-radius:999px; }
+    .badge--safe{ color:#15803d; background:#e9f9ef !important; border-color:#9be0b4; }
+    .badge--danger{ color:#b42318; background:#fdeceb !important; border-color:#f2b4ae; }
+    .badge--time{ color:#3a4658; background:#eef1f6 !important; border-color:#cfd6e2; }
+    .badge--limit{ color:#b25e09; background:#fdf2e3 !important; border-color:#f0cf9c; }
+
+    .card-body{ padding:3pt 8pt 5pt; }
+    .lede{ color:#3a4658; font-size:var(--p-font); margin:3pt 0 4pt; }
+
+    ol.steps>li{ padding:0 0 3pt 16pt; font-size:var(--p-font); color:#10151f; }
+    ol.steps>li::before{
+      width:12pt; height:12pt; border-radius:4pt; font-size:6.2pt; top:0;
+      box-shadow:none; color:#fff;
+    }
+    ol.steps>li:not(:last-child)::after{ left:5.5pt; top:13pt; bottom:1pt; background:#d7dde8 !important; }
+
+    ul.sub{ gap:2.5pt; margin:3pt 0 1pt; }
+    ul.sub li{
+      gap:6pt; padding:2.5pt 6pt; font-size:6.9pt;
+      background:#f4f6fa !important; border-color:#d7dde8;
+    }
+    .kbd{
+      font-size:6.6pt; padding:1pt 5pt; border-radius:4pt; color:#fff;
+      box-shadow:none;
+    }
+    .path{
+      background:#f1f4f9 !important; border-color:#d7dde8; color:#1d2940;
+      font-size:6.8pt; padding:1pt 5pt;
+    }
+    strong.hot{ color:#0d1726; }
+    em.warnword{ color:#b25e09; }
+
+    .callout{
+      margin-top:4pt; padding:4pt 6pt; border-radius:6pt; font-size:6.9pt; gap:5pt;
+    }
+    .callout .c-ico{ font-size:7.5pt; }
+    .callout--tip{ background:#eafaf0 !important; border-color:#a7e3bf; color:#1c5733; }
+    .callout--note{ background:#eaf2ff !important; border-color:#aeccf7; color:#234e8c; }
+    .callout--warn{ background:#fdf4e6 !important; border-color:#f0d199; color:#8a5208; }
+    .callout b{ color:#10151f; }
+
+    /* ---- disclaimer: slim footer strip ---- */
+    footer{ max-width:none; padding:5pt 0 0; }
+    .disclaimer{
+      background:#fbeeed !important; border-color:#f0c4bf; color:#5a3330;
+      padding:5pt 8pt; border-radius:6pt; font-size:6.6pt;
+    }
+    .disclaimer b{ color:#b42318; }
+    .sig{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <!-- EDIT VERSION / DATE / URL HERE EACH REVISION -->
+  <span class="eyebrow">⚡ Volvo EX90 · Owner's Quick Reference</span>
+  <h1 class="title">The Volvo EX90 Cheat Sheet</h1>
+  <div class="meta">
+    <span>Software <strong>1.2.15 – 2.1.26</strong></span>
+    <span class="dot"></span>
+    <span>Updated August 26, 2025</span>
+    <span class="dot"></span>
+    <a href="https://gregwilson.tech" target="_blank" rel="noopener">gregwilson.tech</a>
+  </div>
+  <div class="legend">
+    <span class="badge badge--safe">✓ Settings retained</span>
+    <span class="badge badge--danger">⚠ Erases data</span>
+    <span class="badge badge--time">⏱ Time required</span>
+    <span class="badge badge--limit">◷ Version / limit</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==================== COLUMN 1 ==================== -->
+  <div class="pcol">
+
+  <!-- ============ 1. REBOOT CENTRAL COMPUTER ============ -->
+  <article class="card card--blue">
+    <span class="card-num">1</span>
+    <div class="card-head">
+      <div class="card-ico">🔄</div>
+      <h2>Reboot Central Computer</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--safe">✓ Settings retained</span>
+      <span class="badge badge--time">⏱ 3–5 min</span>
+      <span class="badge badge--limit">◷ Once per 24 h</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">Fixes most faults including Charging Faults, Pilot Assist Faults, driver-display errors and most other things.</p>
+      <ol class="steps">
+        <li>Park the vehicle and keep it on (<strong class="hot">Ready mode</strong>) — no charger connected.</li>
+        <li>Press and hold the <strong class="hot">brake pedal</strong> — keep holding until the last step.</li>
+        <li>At the same time, press and hold <strong class="hot">both</strong>:
+          <ul class="sub">
+            <li><span class="kbd">–</span> Minus button — left side of the steering wheel</li>
+            <li><span class="kbd">Vol ▲</span> Volume Up — right side of the steering wheel</li>
+          </ul>
+        </li>
+        <li>Keep holding until you see <em class="warnword">“System Communication Error / Fault”</em> on the instrument panel (10–20 seconds).</li>
+        <li>Now press and hold the <strong class="hot">PARK</strong> button (end of the gear selector) for <strong class="hot">2 seconds</strong> to complete the reset. There's no immediate feedback (screens may dim slightly), but things reset after 30–60 seconds.</li>
+      </ol>
+      <div class="callout callout--note">
+        <span class="c-ico">ℹ️</span>
+        <div>The car will show many errors as it comes back online. After it settles you may still see a few indicators — don't panic. Get out, walk away (lets the car power down), come back in a few minutes and you're good to go.</div>
+      </div>
+      <div class="callout callout--tip">
+        <span class="c-ico">💡</span>
+        <div><b>New tip:</b> Reboot the Displays / Infotainment right after this. The two combined fix most issues.</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ 2. RESTORE GOOGLE MAPS & ASSISTANT ============ -->
+  <article class="card card--green">
+    <span class="card-num">2</span>
+    <div class="card-head">
+      <div class="card-ico">🗺️</div>
+      <h2>Restore Missing Google Maps &amp; Assistant</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--safe">✓ Data &amp; keys retained</span>
+      <span class="badge badge--time">⏱ ~1 min</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">Fixes Google Maps and Google Assistant disappearing — maps not working or Google not responding to voice commands because the apps are missing.</p>
+      <ol class="steps">
+        <li>Open <span class="path">Settings<span class="sep">›</span>System<span class="sep">›</span>Applications<span class="sep">›</span>Show all apps</span></li>
+        <li>Scroll to <strong class="hot">Google Maps</strong>, tap it, then <strong class="hot">Enable</strong> it. Repeat for the <strong class="hot">Google Assistant</strong> app.</li>
+        <li>Open both apps — everything should work again.</li>
+      </ol>
+    </div>
+  </article>
+
+  </div>
+
+  <!-- ==================== COLUMN 2 ==================== -->
+  <div class="pcol">
+
+  <!-- ============ 5. RESET UWB DIGITAL KEY MODULE ============ -->
+  <article class="card card--violet">
+    <span class="card-num">5</span>
+    <div class="card-head">
+      <div class="card-ico">🔑</div>
+      <h2>Reset the Ultra-Wideband (UWB) Digital Key Module</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--limit">◷ 1.2.15 only</span>
+      <span class="badge badge--safe">✓ Data &amp; keys retained</span>
+      <span class="badge badge--time">⏱ ~20 min</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">Fixes most digital-key issues — can't add digital keys, or your phone no longer unlocks the car.</p>
+      <ol class="steps">
+        <li>Unlock the car and exit — <strong class="hot">don't lock it</strong>. Stand outside by the driver's door.</li>
+        <li>If you use your phone as a digital key, turn off Bluetooth or move your phone away from the car. Move any key tags away too.</li>
+        <li>Tap your finger on the indent on the driver's door handle and hold for <strong class="hot">1 second</strong>, then lift your finger.</li>
+        <li>Repeat the previous step four more times (<strong class="hot">5 taps total</strong>, one second each).</li>
+        <li>The car won't react at all — it feels useless and silly, but it works!</li>
+        <li>Walk away and leave it <strong class="hot">untouched for 20 minutes</strong>. Don't interact with the vehicle — no door handles, no Volvo app, and no key fobs nearby.</li>
+        <li>When you come back, digital-key functionality should be working again.</li>
+      </ol>
+      <div class="callout callout--note">
+        <span class="c-ico">ℹ️</span>
+        <div>This doesn't appear to be necessary on <b>1.3.18</b>.</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ 6. FULL FACTORY RESET ============ -->
+  <article class="card card--red">
+    <span class="card-num">6</span>
+    <div class="card-head">
+      <div class="card-ico">🧨</div>
+      <h2>Full Factory Reset (Erase All Data)</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--danger">⚠ Erases everything</span>
+      <span class="badge badge--limit">◷ Owner profile only</span>
+      <span class="badge badge--time">⏱ 5–10 min + setup</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">Last-resort option that can fix corrupt profiles and other issues.</p>
+      <div class="callout callout--warn">
+        <span class="c-ico">⚠️</span>
+        <div>This <b>erases all settings, apps, digital keys, profiles, Bluetooth connections, etc.</b> Only the owner profile can perform it. Plan for extra time to re-install apps and set up profiles afterward.</div>
+      </div>
+      <ol class="steps" style="margin-top:16px">
+        <li>Tap the <strong class="hot">car icon</strong> at the bottom of the screen.</li>
+        <li>Go to <span class="path">Settings<span class="sep">›</span>System<span class="sep">›</span>Reset options<span class="sep">›</span>Erase all data (factory reset)</span></li>
+        <li>Follow the on-screen instructions.</li>
+      </ol>
+    </div>
+  </article>
+
+  </div>
+
+  <!-- ==================== COLUMN 3 ==================== -->
+  <div class="pcol">
+
+  <!-- ============ 3. FIX SPEED LIMIT INDICATOR ============ -->
+  <article class="card card--amber">
+    <span class="card-num">3</span>
+    <div class="card-head">
+      <div class="card-ico">🚦</div>
+      <h2>Fix Missing Speed-Limit Indicator</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--safe">✓ Settings retained</span>
+      <span class="badge badge--time">⏱ ~2 min</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">If the speed limit has stopped showing on the driver's display, this brings it back.</p>
+      <ol class="steps">
+        <li>Open <span class="path">Settings<span class="sep">›</span>System<span class="sep">›</span>Applications<span class="sep">›</span>Show all apps</span></li>
+        <li>Scroll to <strong class="hot">Google Maps</strong>, tap it, then <strong class="hot">Storage &amp; cache</strong>.</li>
+        <li>Tap <strong class="hot">Clear storage</strong> and <strong class="hot">Clear cache</strong>. You'll likely have to re-login to Google Maps.</li>
+      </ol>
+      <div class="callout callout--note">
+        <span class="c-ico">ℹ️</span>
+        <div>I've yet to experience this problem since upgrading to <b>1.3.18</b>.</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ 4. REBOOT DISPLAYS / INFOTAINMENT ============ -->
+  <article class="card card--cyan">
+    <span class="card-num">4</span>
+    <div class="card-head">
+      <div class="card-ico">📺</div>
+      <h2>Reboot Displays / Infotainment</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--safe">✓ Data &amp; keys retained</span>
+      <span class="badge badge--time">⏱ 1–2 min</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">Fixes excessive screen lag, misbehaving apps, frozen screens and more.</p>
+      <ol class="steps">
+        <li>Make sure the car is parked and <em class="warnword">not charging</em>.</li>
+        <li>Press and hold the <strong class="hot">Play / Pause</strong> button until the screens go black (approx. 45 seconds).</li>
+        <li>When the displays return, everything is back to normal in about a minute.</li>
+        <li>If issues remain, reboot the Central Computer and try again.</li>
+      </ol>
+    </div>
+  </article>
+
+  <!-- ============ 7. DOG MODE ============ -->
+  <article class="card card--pink">
+    <span class="card-num">7</span>
+    <div class="card-head">
+      <div class="card-ico">🐶</div>
+      <h2>Leaving People or Pets in the Car (Dog Mode)</h2>
+    </div>
+    <div class="badges">
+      <span class="badge badge--safe">✓ Settings retained</span>
+      <span class="badge badge--time">⏱ &lt; 1 min</span>
+    </div>
+    <div class="card-body">
+      <p class="lede">If you (the driver) leave the car with people or pets inside and lock it, the internal motion sensors will trigger the alarm, and the climate turns off when you leave. Override both:</p>
+      <ol class="steps">
+        <li><strong class="hot">Turn off motion sensors:</strong> <span class="path">Settings<span class="sep">›</span>Controls<span class="sep">›</span>scroll to Locking<span class="sep">›</span>turn on Occupant locking</span></li>
+        <li><strong class="hot">Keep climate active:</strong> tap the <span class="path">fan (bottom of screen)<span class="sep">›</span>Timers (top of screen)<span class="sep">›</span>Keep climate active</span></li>
+      </ol>
+    </div>
+  </article>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <b>Disclaimer:</b> This information is provided for educational purposes only. The author assumes no responsibility for any damage, malfunction, or warranty voidance that may result from following these procedures. <b>Use at your own risk.</b> Let's hope the next software update makes this cheat sheet obsolete!
+  </div>
+  <div class="sig">The Volvo EX90 Cheat Sheet · 1.2.15 – 2.1.26 · gregwilson.tech</div>
+</footer>
+
+</body>
+</html>
