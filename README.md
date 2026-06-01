@@ -3,6 +3,8 @@
 A redesign of the Volvo EX90 owner's cheat sheet: modern, colorful, easy to read,
 editable for future revisions, and optimized to print on a single page.
 
+![Volvo EX90 cheat sheet](volvo-ex90-cheat-sheet.png)
+
 ## Blog post
 
 There is a corresponding blog post at <https://gregwilson.tech/reboot-volvo-ex90> that
